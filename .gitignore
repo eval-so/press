@@ -1,0 +1,7 @@
+# Editors that matter.
+*~
+*.#*
+*#
+
+# Other editors.
+*.swp
