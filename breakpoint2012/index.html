@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Breakpoint - Public Code Evaluation API</title>
+    
+    <meta name="description" content="This is a presentation by github:codeblock about the concept of Breakpoint." />
+    <meta name="author" content="Ricky Elrod (github:CodeBlock)" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+
+    <link href="./presentation.css" rel="stylesheet" />
+    
+    <link rel="shortcut icon" href="favicon.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  </head>
+  <body class="impress-not-supported">
+
+    <div class="fallback-message">
+      <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+      <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+    </div>
+
+    <div id="impress">
+      <div class="step slide" data-x="-1000" data-y="-1500">
+        <q>
+          <h1 style="text-align: center;"><strong>Breakpoint Evaluation</strong></h1>
+          <br />
+          <h1 style="text-align: center;">Public Code Execution API</h1>
+        </q>
+      </div>
+
+      <div id="title" class="step" data-x="0" data-y="0" data-scale="4">
+        <span class="try">What is</span>
+        <h1><strong>Breakpoint?</strong></h1>
+      </div>
+
+      <div class="step" data-x="850" data-y="3000" data-rotate="90" data-scale="5">
+        <p>
+          <strong>Code evaluation "in ze cloud!"</strong><br/>
+        </p>
+        <ul>
+          <li>Provides a Public API for Code Compilation and Execution.</li>
+          <li>Uses SELinux-powered Sandboxes</li>
+          <li>Is written in Scala</li>
+          <li>Is entirely Open Source (GPLv2+)</li>
+        </ul>
+      </div>
+
+      <div class="step" data-x="6000" data-y="5100" data-rotate="680" data-scale="6">
+        <p>An open-source codepad.com alternative that rocks.</p>
+      </div>
+
+      <div class="step" data-x="2825" data-y="2325" data-z="-3000" data-rotate="300" data-scale="1">
+        <ul>
+          <li>Scales. Scales well.</li>
+          <li>Very simple sign-up process.</li>
+          <li>Officially supported API clients in Ruby and Scala.</li>
+          <li>Evaluates/compiles many different languages.</li>
+        </ul>
+      </div>
+
+      <div class="step" data-x="5000" data-y="-850" data-rotate="90" data-scale="3">
+        <ul>
+          <li>Ruby</li>
+          <li>Python</li>
+          <li>Perl</li>
+          <li>Clojure</li>
+          <li>Scala</li>
+          <li>Haskell</li>
+          <li>Io</li>
+          <li>...the list goes on.</li>
+        </ul>
+      </div>
+
+      <div class="step" data-x="7000" data-y="-300" data-scale="1">
+        <h1>How does it work?</h1>
+        <h2>The workflow goes like this.</h2>
+      </div>
+      
+      <div class="step" data-x="9000" data-y="-300" data-scale="1">
+        <ul>
+          <li>A request hits the API (/evaluate).</li>
+          <li>The "frontend" has access to a database of available compilation nodes, and picks the lowest-current-load node that can evaluate the selected language.</li>
+        </ul>
+      </div>
+
+      <div class="step" data-x="11000" data-y="-300" data-scale="1">
+        <ul>
+          <li>Every node has a daemon, "BCS" (Breakpoint Compilation System), listening on it. It is powered by Akka actors.</li>
+          <li>The frontend forms a message containing information about the code to evaluate, and sends it off to the node it chose.</li>
+        </ul>
+      </div>
+
+      <div class="step" data-x="13000" data-y="-300" data-scale="1">
+        <ul>
+          <li>The node sets up a sandbox environment, copies any needed files into it, and runs the compilation/evaluation within the sandbox.</li>
+          <li>When it's done, BCS sends back a message to the frontend, which contains the result.</li>
+        </ul>
+      </div>
+
+      <div class="step" data-x="6300" data-y="2000" data-rotate="20" data-scale="1">
+        <h1>What does a request look like?</h1>
+        <pre>{
+  "api_key": "YOUR_API_KEY",
+  "language": "ruby-1.9.3p0",
+  "code": "puts 'Hello world!'"
+}</pre>
+      </div>
+
+      <div class="step" data-x="3000" data-y="4000" data-rotate="20" data-scale="1">
+        <h1>Yeah. It's that simple.</h1>
+        <p>Not to worry - it can do much, much more.</p>
+      </div>
+
+      <div class="step" data-x="4000" data-y="2000" data-rotate="20" data-scale="1">
+        <u>Some noteworthy optional features:</u>
+        <ul>
+          <li>Screenshots of Xorg output from evaluated code.</li>
+          <li>Support for multiple architectures (i686, x86_64*, sparc64, ppc64, etc).</li>
+          <li>Optionally, send STDIN to a process.</li>
+        </ul>
+        <br />
+        <p>* = default</p>
+      </div>
+
+      <div class="step" data-x="1000" data-y="-1000" data-rotate="-20" data-scale="1">
+        <h1>So - why should you care? Well..</h1>
+        <ul>
+          <li>Find some random code on Reddit? Don't test it on your own box!</li>
+          <li>Run a site that deals with code (like a pastebin?) - This adds a nice touch!</li>
+          <li>IRC/Campfire bots, CI testing, etc.</li>
+        </ul>
+      </div>
+      
+      <div class="step" data-x="1000" data-y="-2000" data-rotate="-20" data-scale="1">
+        <h1>Questions? Comments?</h1>
+      </div>
+
+      <div class="step" data-x="1000" data-y="-3000" data-rotate="-20" data-scale="1">
+        <h1>Thank you!</h1>
+        <h2><a href="https://github.com/breakpoint-eval/">github.com/breakpoint-eval</a></h2>
+      </div>
+      
+      <div id="overview" class="step" data-x="3000" data-y="1500" data-scale="10">
+      </div>
+
+    </div>
+
+    <div class="hint">
+      <p>Use a spacebar or arrow keys to navigate</p>
+    </div>
+    <script>
+      if ("ontouchstart" in document.documentElement) { 
+      document.querySelector(".hint").innerHTML = "<p>Tap on the left or right to navigate</p>";
+      }
+    </script>
+
+    <script src="../impress.js/js/impress.js"></script>
+    <script>impress().init();</script>
+
+  </body>
+</html>
